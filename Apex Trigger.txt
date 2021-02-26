@@ -1,0 +1,4 @@
+trigger Second on Account (After update)
+{
+Secondclass.yyy(trigger.new);   
+}

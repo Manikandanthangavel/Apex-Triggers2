@@ -1,0 +1,24 @@
+@isTest
+public class secondtestclass {
+    @isTest
+    public static void testHandler(){
+        Account ac = new Account();
+        ac.name='mahesh';
+        insert ac;
+        id acntid = ac.id;
+      Contact df = new Contact();
+       df.Salutation='mr';
+        df.FirstName='thangavel';
+        df.LastName='mahi';
+        df.AccountId=acntid;
+      insert df;
+         Account ad=[Select a.Website from Account a where a.Id=:acntid];
+        
+       ad.Website='www.google.in';
+        update ad;
+         Test.startTest();        
+        Contact at = [SELECT Id, c.Profile__c FROM Contact c WHERE c.AccountId =: acntid ];
+        System.assertequals('www.google.in/tmahi',at.Profile__c);
+         Test.stopTest();
+    }
+}

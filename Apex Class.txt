@@ -1,0 +1,31 @@
+public class Secondclass {
+    public static void yyy(List<Account> accList)
+    {
+    
+         List<Contact> ccli = new List<Contact>();
+   for (Account t : accList)
+   {
+       if(t.Website!='null')
+       {
+             
+           for(Contact ccc : [SELECT c.FirstName ,c.LastName from Contact c 
+                              where c.AccountId IN :accList])
+             {
+                String s1 =ccc.FirstName;
+                 String s2=ccc.LastName;
+                 String s3=t.Website;
+                 String a =s1.substring(0, 1);
+               String done = s3+'/'+a+s2;
+              ccc.Profile__c = done; 
+                ccli.add(ccc);
+               
+             }
+       }      
+    }
+          
+    if(ccli.size() > 0)
+    {
+        update ccli;
+    }
+}
+}
